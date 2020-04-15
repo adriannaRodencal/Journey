@@ -26,7 +26,7 @@ class MainWidget(QtWidgets.QWidget):
         #
         self.background = QtGui.QPixmap()
         root = QtCore.QFileInfo(__file__).absolutePath()
-        self.background.load(root + '/graphics/riverChoose.jpg')
+        self.background.load(root + '/grahics/riverChoose.jpg')
 
         #
         # You can have a painter draw directly onto this widget, but you have more
@@ -35,6 +35,17 @@ class MainWidget(QtWidgets.QWidget):
         #self.image = QtGui.QImage(self.width(), self.height(), QtGui.QImage.Format_RGB32)
         #self.image.fill(0)
 
+
+        #
+        # This is an example of connecting a widget (slider) to an instance variable. It is
+        # only for drawing the lines in this example. You won't need it.
+        #
+        self.lines = 5
+
+        #
+        # An instance variable that I will need when I draw.
+        #
+        self.roamer = model.Roamer(self.lines)
 
 
 
@@ -83,7 +94,6 @@ class MainWidget(QtWidgets.QWidget):
             print('up')
         else:
             print('down')
-
 
 
     def mousePressEvent(self, event):

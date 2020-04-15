@@ -79,8 +79,6 @@ class Roamer(object):
         newLine.end.move(lowerLeftBound, upperRightBound)
         self.lines.append(newLine)
 
-    def set_line(self, lines):
-        self.numberOfLines = lines
 
 
 
