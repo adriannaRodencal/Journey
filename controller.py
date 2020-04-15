@@ -82,9 +82,9 @@ class MyApplication(QtWidgets.QMainWindow):
         #
         # Misc window settings that you can use.
         #
-        self.setWindowTitle("Treekthin ota ta Churi")
+        self.setWindowTitle("Treekthin ota at Churi")
         self.setWindowIcon(QtGui.QIcon('./icons/hexagon.png'))
-        self.statusBar().showMessage('Ready')
+        self.statusBar().showMessage('Opening')
 
     def create_actions(self):
         """
@@ -149,15 +149,20 @@ class MyApplication(QtWidgets.QMainWindow):
 
         self.menuBar().addSeparator()
 
-        self.helpMenu = self.menuBar().addMenu("&Why am I here")
+        self.helpMenu = self.menuBar().addMenu("&Help")
         self.helpMenu.addAction(self.aboutAction)
 
     def create_tool_bars(self):
         """Create a toolbar and add an action to it."""
-        pass
+
+        self.fileToolBar = self.addToolBar("File")
+        self.fileToolBar.addAction(self.newAction)
+        self.fileToolBar.addAction(self.openAction)
+        self.fileToolBar.addAction(self.saveAction)
+
 
     def create_status_bar(self):
-        self.statusBar().showMessage("Opening")
+        self.statusBar().showMessage("Ready")
         #
         # You can also add widgets to the statusBar
         #
@@ -181,12 +186,11 @@ class MyApplication(QtWidgets.QMainWindow):
         self.close()
 
     def about(self):
-        QtWidgets.QMessageBox.about(self, "Treekthin ota ta Churi",
-                                    "This is a RPG game where you play a the main character who is looking"
-                                    "for their fiend who went missing. Through out you have to chose different decisions"
-                                    "which each have their own risks to them."
-                                    "Good Luck!"
-                                    "This is the way")
+        QtWidgets.QMessageBox.about(self, "Treekthin ota at Churi",
+                                    "On this journey you need to find your friend "
+                                    "who has been missing up in the mountains."
+                                    "Choose your choices wisely because one small "
+                                    "error could ruin it.")
 
     def mousePressEvent(self, event):
         print("click")
