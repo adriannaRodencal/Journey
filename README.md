@@ -15,8 +15,8 @@ If the user decides to sleep in the cave, they will find a dragon. This dragon w
 them a riddle. If the user gets the riddle right, the dragon flies the user to the friend. A victory scene is then displayed where the dragon, the user, and the friend are all united. If the user gets the riddle wrong, the dragon leaves the cave for the night and the user sleeps in the cave. After the night, the user will have the option to give up on the journey. If the user gives up, an end scene will be shown where the user is congratulated for their efforts. If the user continues, a victory scene will be displayed where the user is reunited with their friend.
 
 Additional Features:
-An option to set the difficulty (this will affect the odds of success)
-The ability to use items in the inventory 
-More story scenes
-A hunger bar
+An option to set the difficulty (this will affect the odds of success), 
+The ability to use items in the inventory, 
+More story scenes, 
+A hunger bar, 
 A thirst bar
