@@ -1,14 +1,17 @@
 import sys
 from PyQt5 import QtGui, QtCore, QtWidgets
-
-from view import MainWidget
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import *
+from time import sleep
+from view import Scene
 
 
 class MyApplication(QtWidgets.QMainWindow):
     def __init__(self, app):
         #
         # MainWindow is, as you might expect, the main window
-        # of an application. It supports menus, statusbars,
+        # of an application. It supports menus, status bars,
         # toolbars and probably other stuff.
         #
         # Call __init__ for the parent class to initialize things.
@@ -24,11 +27,10 @@ class MyApplication(QtWidgets.QMainWindow):
         # Setup the main display window.
         #
         self.setup_window()
-
         #
         # Initialize the widget that will act as the display.
         #
-        self.display = MainWidget()
+        self.display = Scene()
         self.setCentralWidget(self.display)
         self.display.show()
 
@@ -39,6 +41,8 @@ class MyApplication(QtWidgets.QMainWindow):
         self.create_menus()
         self.create_tool_bars()
         self.create_status_bar()
+        # self.event = MyLabel()
+        # self.event.show()
 
         #
         # This example only has one item in the main window. If you write
@@ -68,7 +72,7 @@ class MyApplication(QtWidgets.QMainWindow):
         #
         xSize = 1400
         ySize = 800
-        self.resize(xSize, ySize)
+        self.setFixedSize(QSize(xSize, ySize))
 
         #
         # Starting coordinates of the window. This centers it on the desktop. Optional.
@@ -82,9 +86,15 @@ class MyApplication(QtWidgets.QMainWindow):
         #
         # Misc window settings that you can use.
         #
-        self.setWindowTitle("Treekthin ota at Churi")
-        self.setWindowIcon(QtGui.QIcon('./icons/hexagon.png'))
+        self.setWindowTitle("Treekthin ota ta Churi")
+        self.setWindowIcon(QtGui.QIcon('./icons/book.png'))
         self.statusBar().showMessage('Opening')
+        self.show()
+
+    def messaging(self):
+        label = QLabel(self)
+        label.setText("first line\nsecond line")
+        self.show()
 
     def create_actions(self):
         """
@@ -102,52 +112,14 @@ class MyApplication(QtWidgets.QMainWindow):
                                             statusTip="Exit the application",
                                             triggered=self.quit)
 
-        self.newAction = QtWidgets.QAction(QtGui.QIcon(root + '/icons/new.png'),   # Note that icon is optional.
-                                           "&New", self,
-                                           shortcut=QtGui.QKeySequence.New,  #Some shortcuts are defined by the OS.
-                                           statusTip="Start a new fractal",
-                                           triggered=self.new)
-
-        self.openAction = QtWidgets.QAction(QtGui.QIcon(root + '/icons/open.png'),
-                                            "&Open", self,
-                                            shortcut=QtGui.QKeySequence.Open,
-                                            statusTip="Open a previous fractal",
-                                            triggered=self.open)
-
-        self.saveAction = QtWidgets.QAction(QtGui.QIcon(root + '/icons/save.png'),
-                                            "&Save", self,
-                                            shortcut=QtGui.QKeySequence.Save,
-                                            statusTip="Save the current fractal",
-                                            triggered=self.save)
-
-        self.saveAsAction = QtWidgets.QAction("Save &As", self,
-                                              shortcut=QtGui.QKeySequence.SaveAs,
-                                              statusTip="Save the current fractal under a new name",
-                                              triggered=self.save_as)
-
         self.aboutAction = QtWidgets.QAction("&About", self,
                                              statusTip="More information about the program",
                                              triggered=self.about)
 
-        #
-        # Not all actions are available at all times. This is how you set that.
-        #
-        self.openAction.setEnabled(False)
-        self.saveAction.setEnabled(False)
-        self.saveAsAction.setEnabled(False)
-
     def create_menus(self):
         """Create a menubar and add a menu and an action."""
 
-        self.fileMenu = self.menuBar().addMenu("&File")
-        self.fileMenu.addAction(self.newAction)
-        self.fileMenu.addAction(self.openAction)
-        self.fileMenu.addAction(self.saveAction)
-        self.fileMenu.addAction(self.saveAsAction)
-        self.fileMenu.addSeparator()
-        self.fileMenu.addAction(self.exitAction)
-
-        self.menuBar().addSeparator()
+        self.addAction(self.exitAction)
 
         self.helpMenu = self.menuBar().addMenu("&Help")
         self.helpMenu.addAction(self.aboutAction)
@@ -155,32 +127,20 @@ class MyApplication(QtWidgets.QMainWindow):
     def create_tool_bars(self):
         """Create a toolbar and add an action to it."""
 
-        self.fileToolBar = self.addToolBar("File")
-        self.fileToolBar.addAction(self.newAction)
-        self.fileToolBar.addAction(self.openAction)
-        self.fileToolBar.addAction(self.saveAction)
+        # self.fileToolBar = self.addToolBar("File")
+        # self.fileToolBar.addAction(self.newAction)
+        # self.fileToolBar.addAction(self.openAction)
+        # self.fileToolBar.addAction(self.saveAction)
 
 
     def create_status_bar(self):
-        self.statusBar().showMessage("Ready")
+        self.statusBar().showMessage("Opening")
         #
         # You can also add widgets to the statusBar
         #
         # self.progressBar = QtWidgets.QProgressBar(self.statusBar())
         # self.progressBar.hide()
         # self.statusBar().addPermanentWidget(self.progressBar)
-
-    def new(self):
-        self.update()
-
-    def open(self):
-        pass
-
-    def save(self):
-        pass
-
-    def save_as(self):
-        pass
 
     def quit(self):
         self.close()
