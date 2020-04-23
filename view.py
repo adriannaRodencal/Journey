@@ -1,53 +1,37 @@
 import model
 import sys, random
 from PyQt5 import QtGui, QtCore, QtWidgets, QtMultimedia
-
-class MainWidget(QtWidgets.QWidget):
-
-    def __init__(self, parent=None):
-        super(MainWidget, self).__init__(parent)
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import *
 
 
-        #
-        # If you are going to use a timer, create one. Oh, and look up timers.
-        #
+class Scene(QtWidgets.QWidget):
+
+    def __init__(self, parent=None, frame='mountainChoice', possiblePaths=2):
+        super(Scene, self).__init__(parent)
+        
         self.timer = QtCore.QTimer()
         self.timer.timeout.connect(self.update)
         self.timer.start(100)
+        self.frame = frame
 
-        #
-        # I'm not actually sure why I thought this was a good idea.
-        # Someone should really look into this.
-        #
         self.setFocusPolicy(QtCore.Qt.StrongFocus)
 
-        #
-        # You can set a background if you'd like:
-        #
-        self.background = QtGui.QPixmap()
-        root = QtCore.QFileInfo(__file__).absolutePath()
-        self.background.load(root + '/grahics/riverChoose.jpg')
 
-        #
-        # You can have a painter draw directly onto this widget, but you have more
-        # options when you draw on an image. We will do that a little later.
-        #
-        #self.image = QtGui.QImage(self.width(), self.height(), QtGui.QImage.Format_RGB32)
-        #self.image.fill(0)
+        # self.background = QtGui.QPixmap()
+        # root = QtCore.QFileInfo(__file__).absolutePath()
+        # self.background.load(root + '/grahics/riverChoose.jpg')
 
+        button1 = QPushButton('PyQt5 button', self)
+        button1.setToolTip('This is an example button')
+        button1.move(250, 625)
+        button1.clicked.connect(self.on_click)
 
-        #
-        # This is an example of connecting a widget (slider) to an instance variable. It is
-        # only for drawing the lines in this example. You won't need it.
-        #
-        self.lines = 5
-
-        #
-        # An instance variable that I will need when I draw.
-        #
-        self.roamer = model.Roamer(self.lines)
-
-
+        button2 = QPushButton('This is random', self)
+        button2.setToolTip('This is an example button')
+        button2.move(1025, 550)
+        button2.clicked.connect(self.on_click)
 
 
     def paintEvent(self, event):
@@ -58,21 +42,14 @@ class MainWidget(QtWidgets.QWidget):
         painter = QtGui.QPainter(self)
         rectangle = self.contentsRect()
 
-        #
-        # Set Background
-        #
-        painter.drawPixmap(rectangle, self.background, rectangle)
-        #
-        # If we were drawing on an image, we would need to do some resizing
-        # stuff like this. We will do this eventually.
-        #
-        #newSize = self.size()
-        #self.image = self.image.scaled(newSize)
-        #painter.drawImage(0, 0, self.image)
+        self.background = QtGui.QPixmap()
+        root = QtCore.QFileInfo(__file__).absolutePath()
+        self.background.load(root + f'/grahics/{self.frame}.jpg')
+        paint.drawText(100, 100, "Hello")
 
-        #
-        # Do any drawing that you need to do next.
-        #
+        painter.drawPixmap(rectangle, self.background, rectangle)
+
+
 
     def keyPressEvent(self, event):
         """
@@ -96,9 +73,5 @@ class MainWidget(QtWidgets.QWidget):
             print('down')
 
 
-    def mousePressEvent(self, event):
-        print("click (display)")
-
-    def mouseReleaseEvent(self, event):
-        print("release (display)")
-
+    def on_click(self):
+        print('PyQt5 button click')
