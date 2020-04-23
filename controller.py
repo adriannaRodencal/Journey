@@ -9,7 +9,6 @@ from view import Scene
 
 class MyApplication(QtWidgets.QMainWindow):
     def __init__(self, app):
-        #
         # MainWindow is, as you might expect, the main window
         # of an application. It supports menus, status bars,
         # toolbars and probably other stuff.
@@ -25,7 +24,8 @@ class MyApplication(QtWidgets.QMainWindow):
 
         #
         # Setup the main display window.
-        #
+
+
         self.setup_window()
         #
         # Initialize the widget that will act as the display.
@@ -34,6 +34,7 @@ class MyApplication(QtWidgets.QMainWindow):
         self.setCentralWidget(self.display)
         self.display.show()
 
+
         #
         # Create actions, menus, toolbars and statusbar
         #
@@ -41,6 +42,7 @@ class MyApplication(QtWidgets.QMainWindow):
         self.create_menus()
         self.create_tool_bars()
         self.create_status_bar()
+
         # self.event = MyLabel()
         # self.event.show()
 
@@ -152,14 +154,24 @@ class MyApplication(QtWidgets.QMainWindow):
                                     "Choose your choices wisely because one small "
                                     "error could ruin it.")
 
-    def mousePressEvent(self, event):
-        print("click")
+    # def initUI(self):
+    #
+    #     button1 = QPushButton('PyQt5 button', self)
+    #     button1.setToolTip('This is an example button')
+    #     button1.move(200, 70)
+    #     button1.clicked.connect(self.on_click)
+    #
+    #     button2 = QPushButton('This is random', self)
+    #     button2.setToolTip('This is an example button')
+    #     button2.move(100, 70)
+    #     button2.clicked.connect(self.on_click)
+    #
+    #     self.show()
 
-    def mouseReleaseEvent(self, event):
-        print("release")
 
-    def keyPressEvent(self, event):
-        print("key press")
 
-    def keyReleaseEvent(self, event):
-        print("key release")
+    def mousePresEvent(self, event):
+        print("click (display)")
+        x = event.pos().x()
+        y = event.pos().y()
+        print(x, y)
