@@ -93,11 +93,6 @@ class MyApplication(QtWidgets.QMainWindow):
         self.statusBar().showMessage('Opening')
         self.show()
 
-    def messaging(self):
-        label = QLabel(self)
-        label.setText("first line\nsecond line")
-        self.show()
-
     def create_actions(self):
         """
         Setup an action that can be associated with menus, buttons, shortcuts and taskbars.
@@ -153,22 +148,6 @@ class MyApplication(QtWidgets.QMainWindow):
                                     "who has been missing up in the mountains."
                                     "Choose your choices wisely because one small "
                                     "error could ruin it.")
-
-    # def initUI(self):
-    #
-    #     button1 = QPushButton('PyQt5 button', self)
-    #     button1.setToolTip('This is an example button')
-    #     button1.move(200, 70)
-    #     button1.clicked.connect(self.on_click)
-    #
-    #     button2 = QPushButton('This is random', self)
-    #     button2.setToolTip('This is an example button')
-    #     button2.move(100, 70)
-    #     button2.clicked.connect(self.on_click)
-    #
-    #     self.show()
-
-
 
     def mousePresEvent(self, event):
         print("click (display)")
