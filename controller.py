@@ -30,7 +30,6 @@ class MyApplication(QtWidgets.QMainWindow):
         #
         # Initialize the widget that will act as the display.
         #
-        
         self.display = Scene()
         self.setCentralWidget(self.display)
         self.display.show()
@@ -149,7 +148,6 @@ class MyApplication(QtWidgets.QMainWindow):
                                     "who has been missing up in the mountains."
                                     "Choose your choices wisely because one small "
                                     "error could ruin it.")
-
 
     def mousePresEvent(self, event):
         print("click (display)")

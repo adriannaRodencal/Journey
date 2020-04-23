@@ -15,11 +15,7 @@ def main():
     #
     myApplication = MyApplication(pyQtApp)
     myApplication.show()
-    #
-    # Execute the application (and hence the window), enter the application's
-    # main event loop, and service user requests until the user terminates the
-    # application. Then exit returning and exit conditions.
-    #
+
     exitCondition = pyQtApp.exec_()
     sys.exit(exitCondition)
 

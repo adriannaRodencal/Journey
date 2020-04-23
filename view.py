@@ -6,10 +6,10 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
 
-
 class Scene(QtWidgets.QWidget):
 
-    def __init__(self, parent=None, frame='riverChoose', possiblePaths=2):
+    def __init__(self, parent=None, frame='mountainChoice', possiblePaths=2):
+
         super(Scene, self).__init__(parent)
         
         self.timer = QtCore.QTimer()
@@ -32,8 +32,7 @@ class Scene(QtWidgets.QWidget):
         self.background = QtGui.QPixmap()
         root = QtCore.QFileInfo(__file__).absolutePath()
         self.background.load(root + f'/grahics/{self.frame}.jpg')
-
-
+        
         painter.drawPixmap(rectangle, self.background, rectangle)
         painter.drawText(100, 100, "Hello")
 
@@ -64,7 +63,7 @@ class Scene(QtWidgets.QWidget):
         button1.setToolTip('This is an example button')
         button1.move(250, 625)
         button1.clicked.connect(self.on_click)
-
+        
         button2 = QPushButton('This is random', self)
         button2.setToolTip('This is an example button')
         button2.move(1025, 550)
