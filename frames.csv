@@ -1,0 +1,4 @@
+# Each line of this file represents a frame for the game
+# If the frame does not need a particular variable, put "None"
+# The format for each line is as follows where button1 and button2 are the button names and where button1Next and button2Next are the names of the next frame:
+# frame, button1, button1x, button1y, button2, button2x, button2y, button1Next, button2Next
