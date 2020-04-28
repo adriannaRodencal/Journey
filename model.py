@@ -18,3 +18,16 @@ class Model(object):
         # This seems weird, but it appears to work
         #
         theScene.next_scene(newScene)
+
+class Frame(object):
+
+    def __init__(self, frameName, button1, button1x, button1y, button1Next, button2, button2x, button2y, button2Next):
+        self.__frame = frameName
+        self.__button1 = button1
+        self.__button1x = button1x
+        self.__button1y = button1y
+        self.__button1Next = button1Next
+        self.__button2 = button2
+        self.__button2x = button2x
+        self.__button2y = button2y
+        self.__button2Next = button2Next
