@@ -19,7 +19,7 @@ class Scene(QtWidgets.QWidget):
         self.timer = QtCore.QTimer()
         self.timer.timeout.connect(self.update)
         self.timer.start(100)
-        self.frame = 'mountainChoice'
+        self.frame = 'riverChoose'
 
         self.setFocusPolicy(QtCore.Qt.StrongFocus)
         self.create_buttons()
