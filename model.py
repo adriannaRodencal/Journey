@@ -6,7 +6,7 @@ import toolbox
 class Model(object):
 
     def __init__(self):
-        self.__currentScene = 'mountainChoice'
+        self.__currentFrame = 'mountainChoice'
         self.__frames = []
         self.read_frames('frames.csv')
 
