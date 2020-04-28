@@ -8,14 +8,18 @@ from PyQt5.QtWidgets import *
 
 class Scene(QtWidgets.QWidget):
 
-    def __init__(self, parent=None, frame='mountainChoice', possiblePaths=2):
+    def __init__(self, parent=None, possiblePaths=2):
 
         super(Scene, self).__init__(parent)
+        #
+        # I'm not sure that this should be created here, but I didn't know where else to put it
+        #
+        self.theModel = model.Model()
         
         self.timer = QtCore.QTimer()
         self.timer.timeout.connect(self.update)
         self.timer.start(100)
-        self.frame = frame
+        self.frame = 'mountainChoice'
 
         self.setFocusPolicy(QtCore.Qt.StrongFocus)
         self.create_buttons()
@@ -23,8 +27,9 @@ class Scene(QtWidgets.QWidget):
 
     def paintEvent(self, event):
         """
-        By magic, this event occasionally gets called. Maybe on self.update()? Certainly on
-        a window resize.
+        This sets up the background image and text for the scene
+        :param event: a value needed for PyQt5 to know
+        :return: None
         """
         painter = QtGui.QPainter(self)
         rectangle = self.contentsRect()
@@ -40,8 +45,8 @@ class Scene(QtWidgets.QWidget):
     def keyPressEvent(self, event):
         """
         You could, of course, do more interesting things than print here.
-        :param event:
-        :return:
+        :param event: a value needed for PyQt5 to know
+        :return: None
         """
         if event.key() in [QtCore.Qt.Key_Right, QtCore.Qt.Key_Up]:
             print('up')
@@ -59,15 +64,46 @@ class Scene(QtWidgets.QWidget):
             print('down')
 
     def create_buttons(self):
-        button1 = QPushButton('PyQt5 button', self)
+        """
+        Sets up the buttons
+        :return: None
+        """
+        button1 = QPushButton('Long Path', self)
         button1.setToolTip('This is an example button')
         button1.move(250, 625)
-        button1.clicked.connect(self.on_click)
+        button1.clicked.connect(self.on_click1)
         
-        button2 = QPushButton('This is random', self)
+        button2 = QPushButton('Steep Path', self)
         button2.setToolTip('This is an example button')
         button2.move(1025, 550)
-        button2.clicked.connect(self.on_click)
+        button2.clicked.connect(self.on_click2)
 
-    def on_click(self):
-        print('PyQt5 button click')
+    def on_click1(self):
+        """
+        Tells the program what scene to show after the user presses button1
+        :return: None
+        """
+        #
+        # I don't know if the code should look like this, but it appears to work
+        #
+        self.theModel.next_scene(self, 'longChoice')
+        print('PyQt5 button click 1')
+
+    def on_click2(self):
+        """
+        Tells the program what scene to show after the user presses button2
+        :return: None
+        """
+        #
+        # I don't know if the code should look like this, but it appears to work
+        #
+        self.theModel.next_scene(self, 'shortChoice')
+        print('PyQt5 button click 1')
+
+    def next_scene(self, newFrame):
+        """
+        Sets up the next scene
+        :return: None
+        """
+        self.frame = newFrame
+        print('Next Scene')
