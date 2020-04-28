@@ -19,8 +19,5 @@ def main():
     exitCondition = pyQtApp.exec_()
     sys.exit(exitCondition)
 
-def read_file():
-
-
 if __name__ == '__main__':
     main()
