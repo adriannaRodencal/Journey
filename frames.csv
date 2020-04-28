@@ -2,3 +2,12 @@
 # If the frame does not need a particular variable, put "None"
 # The format for each line is as follows where button1 and button2 are the button names and where button1Next and button2Next are the names of the next frame:
 # frame, button1, button1x, button1y, button2, button2x, button2y, button1Next, button2Next
+
+'riverChoose', 'Float Across', 200, 625, 'Walk Across', 1050, 550, 'logChoice', 'fallenTreeChoice'
+'logChoice', 'Continue', 200, 625, None, None, None, 'mountainChoice', None
+'fallenTreeChoice', 'Continue', 200, 625, None, None, None, 'mountainChoice', None
+'mountainChoice', 'Long Path', 200, 625, 'Short Path', 1050, 550, 'longChoice', 'shortChoice'
+'longChoice', 'Continue', 200, 625, None, None, None, 'sleepingChoices', None
+'shortChoice', 'Continue', 200, 625, None, None, None, 'sleepingChoices', None
+'sleepingChoices', 'Cave', 200, 625, 'Field', 1050, 550, '----------', '-----------'
+'goOrReturn', 'Return Home', 200, 625, 'Find Violet', 1050, 550, '----------', '-----------'
