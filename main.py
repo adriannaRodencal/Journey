@@ -20,7 +20,7 @@ def main():
     sys.exit(exitCondition)
 
 def read_file():
-
+    pass
 
 if __name__ == '__main__':
     main()
