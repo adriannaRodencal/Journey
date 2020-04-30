@@ -40,15 +40,24 @@ class Model(object):
                     button2 = button2.strip()
                     button2x = button2x.strip()
                     button2y = button2y.strip()
-                    if not toolbox.is_number(button2x):
+                    if not toolbox.is_number(button2x) and button2x != 'None':
                         raise ValueError(f'{name}: button 2 x coordinate must be a number. Check {filename}.')
-                    if not toolbox.is_number(button2y):
+                    if not toolbox.is_number(button2y) and button2y != 'None':
                         raise ValueError(f'{name}: button 2 y coordinate must be a number. Check {filename}.')
+
+                    if button2x == 'None':
+                        button2x = None
+                    if button2y == 'None':
+                        button2y = None
 
                     button1Next = button1Next.strip()
                     button2Next = button2Next.strip()
 
-                    frame = Frame(name, button1, float(button1x), float(button1y), button2, float(button2x),
+                    if button2x == None:
+                        frame = Frame(name, button1, float(button1x), float(button1y), button2, button2x,
+                                  button2y, button1Next, button2Next)
+                    else:
+                        frame = Frame(name, button1, float(button1x), float(button1y), button2, float(button2x),
                                   float(button2y), button1Next, button2Next)
                     self.__frames.append(frame)
         print(self.__frames)
