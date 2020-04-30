@@ -4,7 +4,7 @@ from PyQt5 import QtGui, QtCore, QtWidgets, QtMultimedia
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
-
+from model import Frame
 
 class Scene(QtWidgets.QWidget):
 
@@ -19,7 +19,7 @@ class Scene(QtWidgets.QWidget):
         self.timer = QtCore.QTimer()
         self.timer.timeout.connect(self.update)
         self.timer.start(100)
-        self.frame = 'riverChoose'
+        self.frame = 'goOrReturn'
 
         self.setFocusPolicy(QtCore.Qt.StrongFocus)
         self.create_buttons()
@@ -70,12 +70,12 @@ class Scene(QtWidgets.QWidget):
         """
         button1 = QPushButton('Long Path', self)
         button1.setToolTip('This is an example button')
-        button1.move(250, 625)
+        button1.move(150, 600)
         button1.clicked.connect(self.on_click1)
         
         button2 = QPushButton('Steep Path', self)
         button2.setToolTip('This is an example button')
-        button2.move(1025, 550)
+        button2.move(680, 550)
         button2.clicked.connect(self.on_click2)
 
     def on_click1(self):
