@@ -86,3 +86,32 @@ class Frame(object):
         self.__button2x = button2x
         self.__button2y = button2y
         self.__button2Next = button2Next
+
+    def get_frameName(self):
+        return self.__frame
+
+    def get_button1(self):
+        return self.__button1
+
+    def get_button1x(self):
+        return self.__button1x
+
+    def get_button1y(self):
+        return self.__button1y
+
+    def get_button1Next(self):
+        return self.__button1Next
+
+    def get_button2(self):
+        return self.__button2
+
+    def get_button2x(self):
+        return self.__button2x
+
+    def get_button1y(self):
+        return self.__button2y
+
+    def get_button2Next(self):
+        return self.__button2Next
+
+
