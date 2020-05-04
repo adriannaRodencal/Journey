@@ -86,18 +86,26 @@ class Scene(QtWidgets.QWidget):
         #
         # I don't know if the code should look like this, but it appears to work
         #
-        self.theModel.next_scene(self, 'longChoice')
+        success = self.theModel.determineFail()
+        if success == False:
+            self.theModel.next_scene(self, 'frozenToDeath')
+        else:
+            self.theModel.next_scene(self, 'longChoice')
         print('PyQt5 button click 1')
 
     def on_click2(self):
         """
-        Tells the program what scene to show after the user presses button2
+        Tells the program what scene to show after the user presses button2h
         :return: None
         """
         #
         # I don't know if the code should look like this, but it appears to work
         #
-        self.theModel.next_scene(self, 'shortChoice')
+        success = self.theModel.determineFail()
+        if success == False:
+            self.theModel.next_scene(self, 'frozenToDeath')
+        else:
+            self.theModel.next_scene(self, 'shortChoice')
         print('PyQt5 button click 1')
 
     def next_scene(self, newFrame):
