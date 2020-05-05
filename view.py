@@ -4,7 +4,7 @@ from PyQt5 import QtGui, QtCore, QtWidgets, QtMultimedia
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
-
+from model import Frame
 
 class Scene(QtWidgets.QWidget):
 
@@ -84,18 +84,26 @@ class Scene(QtWidgets.QWidget):
         #
         # I don't know if the code should look like this, but it appears to work
         #
-        self.theModel.next_scene(self, self._frame.get_button1Next())
+        success = self.theModel.determineFail()
+        if success == False:
+            self.theModel.next_scene(self, self._frame.get_button1Next())
+        else:
+            self.theModel.next_scene(self, self._frame.get_button1Next())
         print('PyQt5 button click 1')
 
     def on_click2(self):
         """
-        Tells the program what scene to show after the user presses button2
+        Tells the program what scene to show after the user presses button2h
         :return: None
         """
         #
         # I don't know if the code should look like this, but it appears to work
         #
-        self.theModel.next_scene(self, self._frame.get_button2Next())
+        success = self.theModel.determineFail()
+        if success == False:
+            self.theModel.next_scene(self, self._frame.get_button2Next())
+        else:
+            self.theModel.next_scene(self, self._frame.get_button2Next())
         print('PyQt5 button click 1')
 
     def next_scene(self, newFrame):

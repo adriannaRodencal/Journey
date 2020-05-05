@@ -2,6 +2,7 @@ import random
 import copy
 import view
 import toolbox
+import random
 
 class Model(object):
 
@@ -34,9 +35,12 @@ class Model(object):
                 # This is so that the program ignores the comments in the file
                 #
                 if line[0] != '#':
-                    name, button1, button1x, button1y, button2, button2x, button2y, button1Next, button2Next = line.split(
+                    if len(line.split(',')) != 19:
+                        print(line)
+                    name, button1, button1x, button1y, button2, button2x, button2y, button1Next, button2Next, success = line.split(
                         ',')
                     name = name.strip()
+                    success = success.strip()
 
                     button1 = button1.strip()
                     button1x = button1x.strip()
@@ -63,11 +67,13 @@ class Model(object):
                     button2Next = button2Next.strip()
 
                     if button2x == None:
+                      
                         frame = Frame(self, name, button1, float(button1x), float(button1y), button1Next, button2, button2x,
                                   button2y, button2Next)
                     else:
                         frame = Frame(self, name, button1, float(button1x), float(button1y), button1Next, button2, float(button2x),
                                   float(button2y), button2Next)
+
                     self.__frames.append(frame)
         print(self.__frames)
 
@@ -83,8 +89,22 @@ class Model(object):
         #
         theScene.next_scene(newScene)
 
-class Frame(object):
+    def determineFail(self):
+        """
+        return a boolean of whether an action fails or succeds
+        :param none
+        :return: boolean
+        """
+        #
+        # Taken from our gameOfLife simulation
+        #
+        if random.randrange(1, 100) > Frame.get_success(self):
+            return False
+        else:
+            return True
 
+class Frame(object):
+  
     def __init__(self, theModel, frameName, button1, button1x, button1y, button1Next, button2, button2x, button2y, button2Next):
         self.__frame = str(frameName)
         self.__theModel = theModel
@@ -96,6 +116,38 @@ class Frame(object):
         self.__button2x = button2x
         self.__button2y = button2y
         self.__button2Next = button2Next
+        self.__success = success
+
+    def get_success(self):
+        return 75
+
+    def get_frameName(self):
+        return self.__frame
+
+    def get_button1(self):
+        return self.__button1
+
+    def get_button1x(self):
+        return self.__button1x
+
+    def get_button1y(self):
+        return self.__button1y
+
+    def get_button1Next(self):
+        return self.__button1Next
+
+    def get_button2(self):
+        return self.__button2
+
+    def get_button2x(self):
+        return self.__button2x
+
+    def get_button1y(self):
+        return self.__button2y
+
+    def get_button2Next(self):
+        return self.__button2Next
+
 
     def find_frame_object(self, list, frameName):
         """

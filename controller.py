@@ -113,12 +113,17 @@ class MyApplication(QtWidgets.QMainWindow):
                                              statusTip="More information about the program",
                                              triggered=self.about)
 
+        self.inventoryAction = QtWidgets.QAction("&Inventory", self,
+                                            statusTip="Show Inventory",
+                                            triggered=self.inventory)
+
     def create_menus(self):
         """Create a menubar and add a menu and an action."""
 
         self.addAction(self.exitAction)
 
         self.helpMenu = self.menuBar().addMenu("&Help")
+        self.helpMenu.addAction(self.inventoryAction)
         self.helpMenu.addAction(self.aboutAction)
 
     def create_tool_bars(self):
@@ -148,6 +153,10 @@ class MyApplication(QtWidgets.QMainWindow):
                                     "who has been missing up in the mountains."
                                     "Choose your choices wisely because one small "
                                     "error could ruin it.")
+
+    def inventory(self):
+        QtWidgets.QMessageBox.about(self, "Treekthin ota at Churi",
+                                    "Inventory")
 
     def mousePresEvent(self, event):
         print("click (display)")
