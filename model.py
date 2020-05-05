@@ -69,10 +69,10 @@ class Model(object):
                     if button2x == None:
                       
                         frame = Frame(self, name, button1, float(button1x), float(button1y), button1Next, button2, button2x,
-                                  button2y, button2Next)
+                                  button2y, button2Next, success)
                     else:
                         frame = Frame(self, name, button1, float(button1x), float(button1y), button1Next, button2, float(button2x),
-                                  float(button2y), button2Next)
+                                  float(button2y), button2Next, success)
 
                     self.__frames.append(frame)
         print(self.__frames)
@@ -105,7 +105,7 @@ class Model(object):
 
 class Frame(object):
   
-    def __init__(self, theModel, frameName, button1, button1x, button1y, button1Next, button2, button2x, button2y, button2Next):
+    def __init__(self, theModel, frameName, button1, button1x, button1y, button1Next, button2, button2x, button2y, button2Next, success):
         self.__frame = str(frameName)
         self.__theModel = theModel
         self.__button1 = button1
