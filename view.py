@@ -15,15 +15,14 @@ class Scene(QtWidgets.QWidget):
         # I'm not sure that this should be created here, but I didn't know where else to put it
         #
         self.theModel = model.Model()
-        
+
         self.timer = QtCore.QTimer()
         self.timer.timeout.connect(self.update)
         self.timer.start(100)
-        self.frame = 'goOrReturn'
+        self._frame = self.theModel.get_currentFrame()
 
         self.setFocusPolicy(QtCore.Qt.StrongFocus)
         self.create_buttons()
-
 
     def paintEvent(self, event):
         """
@@ -36,11 +35,10 @@ class Scene(QtWidgets.QWidget):
 
         self.background = QtGui.QPixmap()
         root = QtCore.QFileInfo(__file__).absolutePath()
-        self.background.load(root + f'/grahics/{self.frame}.jpg')
-        
+        self.background.load(root + f'/grahics/{self._frame.get_frame()}.jpg')
+
         painter.drawPixmap(rectangle, self.background, rectangle)
         painter.drawText(100, 100, "Hello")
-
 
     def keyPressEvent(self, event):
         """
@@ -72,7 +70,7 @@ class Scene(QtWidgets.QWidget):
         button1.setToolTip('This is an example button')
         button1.move(150, 600)
         button1.clicked.connect(self.on_click1)
-        
+
         button2 = QPushButton('Steep Path', self)
         button2.setToolTip('This is an example button')
         button2.move(680, 550)
@@ -88,9 +86,9 @@ class Scene(QtWidgets.QWidget):
         #
         success = self.theModel.determineFail()
         if success == False:
-            self.theModel.next_scene(self, 'frozenToDeath')
+            self.theModel.next_scene(self, self._frame.get_button1Next())
         else:
-            self.theModel.next_scene(self, 'longChoice')
+            self.theModel.next_scene(self, self._frame.get_button1Next())
         print('PyQt5 button click 1')
 
     def on_click2(self):
@@ -103,9 +101,9 @@ class Scene(QtWidgets.QWidget):
         #
         success = self.theModel.determineFail()
         if success == False:
-            self.theModel.next_scene(self, 'frozenToDeath')
+            self.theModel.next_scene(self, self._frame.get_button2Next())
         else:
-            self.theModel.next_scene(self, 'shortChoice')
+            self.theModel.next_scene(self, self._frame.get_button2Next())
         print('PyQt5 button click 1')
 
     def next_scene(self, newFrame):
@@ -113,5 +111,5 @@ class Scene(QtWidgets.QWidget):
         Sets up the next scene
         :return: None
         """
-        self.frame = newFrame
+        self._frame = newFrame
         print('Next Scene')
