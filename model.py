@@ -6,9 +6,18 @@ import toolbox
 class Model(object):
 
     def __init__(self):
-        self.__currentFrame = 'mountainChoice'
         self.__frames = []
         self.read_frames('frames.csv')
+        self.__currentFrame = self.__frames[0]
+
+    def get_currentFrame(self):
+        return self.__currentFrame
+
+    def get_frames(self):
+        listOfFrames = []
+        for frame in self.__frames:
+            listOfFrames.append(frame)
+        return listOfFrames
 
     def read_frames(self, filename):
         """
@@ -54,11 +63,11 @@ class Model(object):
                     button2Next = button2Next.strip()
 
                     if button2x == None:
-                        frame = Frame(name, button1, float(button1x), float(button1y), button2, button2x,
-                                  button2y, button1Next, button2Next)
+                        frame = Frame(self, name, button1, float(button1x), float(button1y), button1Next, button2, button2x,
+                                  button2y, button2Next)
                     else:
-                        frame = Frame(name, button1, float(button1x), float(button1y), button2, float(button2x),
-                                  float(button2y), button1Next, button2Next)
+                        frame = Frame(self, name, button1, float(button1x), float(button1y), button1Next, button2, float(button2x),
+                                  float(button2y), button2Next)
                     self.__frames.append(frame)
         print(self.__frames)
 
@@ -76,8 +85,9 @@ class Model(object):
 
 class Frame(object):
 
-    def __init__(self, frameName, button1, button1x, button1y, button1Next, button2, button2x, button2y, button2Next):
-        self.__frame = frameName
+    def __init__(self, theModel, frameName, button1, button1x, button1y, button1Next, button2, button2x, button2y, button2Next):
+        self.__frame = str(frameName)
+        self.__theModel = theModel
         self.__button1 = button1
         self.__button1x = button1x
         self.__button1y = button1y
@@ -86,3 +96,39 @@ class Frame(object):
         self.__button2x = button2x
         self.__button2y = button2y
         self.__button2Next = button2Next
+
+    def find_frame_object(self, list, frameName):
+        """
+        Given a frames name, this finds the frame object
+        :param list: the list the program is looking to find the frame in
+        :param frameName: the name of the frame the program is trying to find
+        :return: an integer corresponding to the place item is
+        """
+        location = None
+        itemNumber = 0
+        while itemNumber < len(list):
+            woo = list[itemNumber].get_frame()
+            if woo == frameName:
+                location = itemNumber
+            itemNumber += 1
+        frameObject = list[location]
+        return frameObject
+
+    def get_frame(self):
+        return self.__frame
+
+    def get_button1Next(self):
+        """
+        Finds the actual frame object that button1Next refers too
+        return: an object
+        """
+        nextFrame = self.find_frame_object(self.__theModel.get_frames(), self.__button1Next)
+        return nextFrame
+
+    def get_button2Next(self):
+        """
+        Finds the actual frame object that button2Next refers too
+        return: an object
+        """
+        nextFrame = self.find_frame_object(self.__theModel.get_frames(), self.__button2Next)
+        return nextFrame
