@@ -3,20 +3,24 @@ import copy
 import view
 import toolbox
 import random
+import csv
 
 class Model(object):
 
     def __init__(self):
-        self.__frames = []
+        self._frames = []
         self.read_frames('frames.csv')
-        self.__currentFrame = self.__frames[0]
+        self.__currentFrame = self._frames[0]
+        self.get_currentFrame()
+
 
     def get_currentFrame(self):
+        print(self.__currentFrame)
         return self.__currentFrame
 
     def get_frames(self):
         listOfFrames = []
-        for frame in self.__frames:
+        for frame in self._frames:
             listOfFrames.append(frame)
         return listOfFrames
 
@@ -69,13 +73,13 @@ class Model(object):
                     if button2x == None:
                       
                         frame = Frame(self, name, button1, float(button1x), float(button1y), button1Next, button2, button2x,
-                                  button2y, button2Next, success)
+                                  button2y, button2Next, success, location=None)
                     else:
                         frame = Frame(self, name, button1, float(button1x), float(button1y), button1Next, button2, float(button2x),
-                                  float(button2y), button2Next, success)
+                                  float(button2y), button2Next, success, location=None)
 
-                    self.__frames.append(frame)
-        print(self.__frames)
+                    self._frames.append(frame)
+        print(self._frames)
 
     def next_scene(self, theScene, newScene):
         """
@@ -103,9 +107,60 @@ class Model(object):
         else:
             return True
 
+    def set_new_scene(self, nextScene):
+        """
+        Set up the new scene in the Frame class so variables can be pulled out.
+        :param nextFrame
+        :return: None
+        """
+        with open('frames.csv', 'r') as framesFile:
+            for line in framesFile:
+                #
+                # This is so that the program ignores the comments in the file
+                #
+                name, button1, button1x, button1y, button2, button2x, button2y, button1Next, button2Next, success = line.split(
+                    ',')
+                here = len(name)
+                if line[0:here] == nextScene:
+                    name = name.strip()
+                    success = success.strip()
+
+                    button1 = button1.strip()
+                    button1x = button1x.strip()
+                    button1y = button1y.strip()
+                    if not toolbox.is_number(button1x):
+                        raise ValueError(f'{name}: button 1 x coordinate must be a number. Check {filename}.')
+                    if not toolbox.is_number(button1y):
+                        raise ValueError(f'{name}: button 1 y coordinate must be a number. Check {filename}.')
+
+                    button2 = button2.strip()
+                    button2x = button2x.strip()
+                    button2y = button2y.strip()
+                    if not toolbox.is_number(button2x) and button2x != 'None':
+                        raise ValueError(f'{name}: button 2 x coordinate must be a number. Check {filename}.')
+                    if not toolbox.is_number(button2y) and button2y != 'None':
+                        raise ValueError(f'{name}: button 2 y coordinate must be a number. Check {filename}.')
+
+                    if button2x == 'None':
+                        button2x = None
+                    if button2y == 'None':
+                        button2y = None
+
+                    button1Next = button1Next.strip()
+                    button2Next = button2Next.strip()
+
+                    if button2x == None:
+
+                        frame = Frame(self, name, button1, float(button1x), float(button1y), button1Next, button2,
+                                      button2x, button2y, button2Next, success, location=None)
+                    else:
+                        frame = Frame(self, name, button1, float(button1x), float(button1y), button1Next, button2,
+                                      float(button2x), float(button2y), button2Next, success, location=None)
+                    print(frame)
+
 class Frame(object):
   
-    def __init__(self, theModel, frameName, button1, button1x, button1y, button1Next, button2, button2x, button2y, button2Next, success):
+    def __init__(self, theModel, frameName, button1, button1x, button1y, button1Next, button2, button2x, button2y, button2Next, success, location):
         self.__frame = str(frameName)
         self.__theModel = theModel
         self.__button1 = button1
@@ -117,6 +172,17 @@ class Frame(object):
         self.__button2y = button2y
         self.__button2Next = button2Next
         self.__success = success
+        self.__location = location
+
+    def __str__(self):
+        string = f'{self.__frame}, '
+        string += f'{self.__button1}, {self.__button1x}, {self.__button1y}, {self.__button1Next}, '
+        string += f'{self.__button2}, {self.__button2x}, {self.__button2y}, {self.__button2Next}, '
+        string += f'{self.__success}'
+        return string
+
+    def get_location(self):
+        return self.__location
 
     def get_success(self):
         return 75
@@ -142,12 +208,28 @@ class Frame(object):
     def get_button2x(self):
         return self.__button2x
 
-    def get_button1y(self):
+    def get_button2y(self):
         return self.__button2y
 
     def get_button2Next(self):
         return self.__button2Next
 
+    def set_location(self, location):
+        self.__location = location
+
+    def determineFail(self):
+        """
+        return a boolean of whether an action fails or succeds
+        :param none
+        :return: boolean
+        """
+        #
+        # Taken from our gameOfLife simulation
+        #
+        if random.randrange(1, 100) > Frame.get_success(self):
+            return False
+        else:
+            return True
 
     def find_frame_object(self, list, frameName):
         """
@@ -164,6 +246,7 @@ class Frame(object):
                 location = itemNumber
             itemNumber += 1
         frameObject = list[location]
+        self.set_location(location)
         return frameObject
 
     def get_frame(self):
@@ -175,6 +258,7 @@ class Frame(object):
         return: an object
         """
         nextFrame = self.find_frame_object(self.__theModel.get_frames(), self.__button1Next)
+        self.__theModel.set_new_scene(self.__button1Next)
         return nextFrame
 
     def get_button2Next(self):
@@ -183,4 +267,7 @@ class Frame(object):
         return: an object
         """
         nextFrame = self.find_frame_object(self.__theModel.get_frames(), self.__button2Next)
+        self.__theModel.set_new_scene(self.__button2Next)
         return nextFrame
+
+
