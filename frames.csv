@@ -4,7 +4,7 @@ logChoice, Continue, 200, 625, None, None, None, mountainChoice, YouDrowned, 25
 fallenTreeChoice, Continue, 200, 625, None, None, None, mountainChoice, None, 50
 mountainChoice, Long Path, 200, 625, Short Path, 1050, 550, longChoice, shortChoice, 100
 longChoice, Continue, 200, 625, None, None, None, sleepingChoices, None, 100
-shortChoice, Continue, 200, 625, None, None, None, sleepingChoices, FellAndDied, 85
+shortChoice, Continue, 200, 625, None, None, None, Violet, FellAndDied, 85
 sleepingChoices, Cave, 200, 625, Field, 1050, 550, upsetDragon, nightSky, 100
 nightSky, Continue, 200, 625, None, None, None, clearNight, None, 100
 clearNight, Continue, 200, 625, None, None, None, goOrReturn, None, 100
