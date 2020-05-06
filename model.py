@@ -91,7 +91,7 @@ class Model(object):
 
     def determineFail(self):
         """
-        return a boolean of whether an action fails or succeds
+        return a boolean of whether an action fails or succeeds
         :param none
         :return: boolean
         """
