@@ -150,9 +150,9 @@ class MyApplication(QtWidgets.QMainWindow):
     def about(self):
         QtWidgets.QMessageBox.about(self, "Treekthin ota at Churi",
                                     "On this journey you need to find your friend "
-                                    "who has been missing up in the mountains."
-                                    "Choose your choices wisely because one small "
-                                    "error could ruin it.")
+                                    "who went missing while traveling in the "
+                                    "mountains. Choose your path carefully because "
+                                    "one small error could ruin everything.")
 
     def inventory(self):
         QtWidgets.QMessageBox.about(self, "Treekthin ota at Churi",
