@@ -93,7 +93,7 @@ class Scene(QtWidgets.QWidget):
 
     def on_click2(self):
         """
-        Tells the program what scene to show after the user presses button2h
+        Tells the program what scene to show after the user presses button2
         :return: None
         """
         #
