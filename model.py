@@ -73,10 +73,10 @@ class Model(object):
                     if button2x == None:
                       
                         frame = Frame(self, name, button1, float(button1x), float(button1y), button1Next, button2, button2x,
-                                  button2y, button2Next, float(success))
+                                  button2y, button2Next, float(success), location=None)
                     else:
                         frame = Frame(self, name, button1, float(button1x), float(button1y), button1Next, button2, float(button2x),
-                                  float(button2y), button2Next, float(success))
+                                  float(button2y), button2Next, float(success), location=None)
 
 
                     self._frames.append(frame)
