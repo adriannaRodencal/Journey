@@ -92,7 +92,7 @@ class Model(object):
     def determineFail(self):
         """
         return a boolean of whether an action fails or succeeds
-        :param none
+        :param: none
         :return: boolean
         """
         #
@@ -159,8 +159,7 @@ class Frame(object):
         location = None
         itemNumber = 0
         while itemNumber < len(list):
-            woo = list[itemNumber].get_frame()
-            if woo == frameName:
+            if list[itemNumber].get_frame() == frameName:
                 location = itemNumber
             itemNumber += 1
         frameObject = list[location]
