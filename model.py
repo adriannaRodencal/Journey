@@ -81,12 +81,13 @@ class Model(object):
         """
         Send view the information needed for making a new scene
         :param theScene: this is from the scene class that view is running
-        :param newScene: this is the name of the new scenes photo
+        :param newScene: this is the new scenes
         :return: None
         """
         #
         # This seems weird, but it appears to work
         #
+        self.__currentFrame = newScene
         theScene.next_scene(newScene)
 
     def determineFail(self):
