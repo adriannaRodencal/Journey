@@ -73,10 +73,11 @@ class Model(object):
                     if button2x == None:
                       
                         frame = Frame(self, name, button1, float(button1x), float(button1y), button1Next, button2, button2x,
-                                  button2y, button2Next, success, location=None)
+                                  button2y, button2Next, float(success))
                     else:
                         frame = Frame(self, name, button1, float(button1x), float(button1y), button1Next, button2, float(button2x),
-                                  float(button2y), button2Next, success, location=None)
+                                  float(button2y), button2Next, float(success))
+
 
                     self._frames.append(frame)
         print(self._frames)
@@ -85,24 +86,25 @@ class Model(object):
         """
         Send view the information needed for making a new scene
         :param theScene: this is from the scene class that view is running
-        :param newScene: this is the name of the new scenes photo
+        :param newScene: this is the new scenes
         :return: None
         """
         #
         # This seems weird, but it appears to work
         #
+        self.__currentFrame = newScene
         theScene.next_scene(newScene)
 
     def determineFail(self):
         """
-        return a boolean of whether an action fails or succeds
-        :param none
+        return a boolean of whether an action fails or succeeds
+        :param: none
         :return: boolean
         """
         #
         # Taken from our gameOfLife simulation
         #
-        if random.randrange(1, 100) > Frame.get_success(self):
+        if random.randrange(1, 100) > self.__currentFrame.get_success():
             return False
         else:
             return True
@@ -185,7 +187,7 @@ class Frame(object):
         return self.__location
 
     def get_success(self):
-        return 75
+        return self.__success
 
     def get_frameName(self):
         return self.__frame
@@ -241,8 +243,7 @@ class Frame(object):
         location = None
         itemNumber = 0
         while itemNumber < len(list):
-            woo = list[itemNumber].get_frame()
-            if woo == frameName:
+            if list[itemNumber].get_frame() == frameName:
                 location = itemNumber
             itemNumber += 1
         frameObject = list[location]

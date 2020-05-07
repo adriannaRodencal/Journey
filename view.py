@@ -89,14 +89,14 @@ class Scene(QtWidgets.QWidget):
         #
         success = self.theModel.determineFail()
         if success == False:
-            self.theModel.next_scene(self, self._frame.get_button1Next())
+            self.theModel.next_scene(self, self._frame.get_button2Next())
         else:
             self.theModel.next_scene(self, self._frame.get_button1Next())
         print('PyQt5 button click 1')
 
     def on_click2(self):
         """
-        Tells the program what scene to show after the user presses button2h
+        Tells the program what scene to show after the user presses button2
         :return: None
         """
         #
