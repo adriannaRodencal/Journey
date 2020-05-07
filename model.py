@@ -69,10 +69,10 @@ class Model(object):
                     if button2x == None:
                       
                         frame = Frame(self, name, button1, float(button1x), float(button1y), button1Next, button2, button2x,
-                                  button2y, button2Next, success)
+                                  button2y, button2Next, float(success))
                     else:
                         frame = Frame(self, name, button1, float(button1x), float(button1y), button1Next, button2, float(button2x),
-                                  float(button2y), button2Next, success)
+                                  float(button2y), button2Next, float(success))
 
                     self.__frames.append(frame)
         print(self.__frames)
@@ -99,7 +99,7 @@ class Model(object):
         #
         # Taken from our gameOfLife simulation
         #
-        if random.randrange(1, 100) > Frame.get_success(self):
+        if random.randrange(1, 100) > self.__currentFrame.get_success():
             return False
         else:
             return True
@@ -120,7 +120,7 @@ class Frame(object):
         self.__success = success
 
     def get_success(self):
-        return 75
+        return self.__success
 
     def get_frameName(self):
         return self.__frame
