@@ -19,7 +19,7 @@ dragonPhotograph, Continue, 200, 625, None, None, None, sleepingInCave, None, 10
 sleepingInCave, Continue, 200, 625, None, None, None, goOrReturn, None, 100
 goOrReturn, Return Home, 200, 625, Find Violet, 1050, 550, returnHome, keepClimbing, 100
 returnHome, Continue, 200, 625, None, None, None, Cover, None, 100
-keepingClimbing, Continue, 200, 625, None, None, None, emptyCave, None, 100
+keepClimbing, Continue, 200, 625, None, None, None, emptyCave, None, 100
 Violet, Continue, 200, 625, None, None, None, VictoryNoDragon, None, 100
 VictoryNoDragon, Home, 200, 625, None, None, None, Cover, None, 100
 DragonVictory, Home, 200, 625, None, None, None, Cover, None, 100
