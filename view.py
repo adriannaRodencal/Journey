@@ -8,7 +8,7 @@ from model import Frame
 
 class Scene(QtWidgets.QWidget):
 
-    def __init__(self, parent=None, possiblePaths=2):
+    def __init__(self, parent=None):
 
         super(Scene, self).__init__(parent)
         #
@@ -36,6 +36,7 @@ class Scene(QtWidgets.QWidget):
         self.background = QtGui.QPixmap()
         root = QtCore.QFileInfo(__file__).absolutePath()
         self.background.load(root + f'/grahics/{self._frame.get_frame()}.jpg')
+        self.create_buttons()
 
         painter.drawPixmap(rectangle, self.background, rectangle)
         painter.drawText(100, 100, "Hello")
@@ -66,15 +67,17 @@ class Scene(QtWidgets.QWidget):
         Sets up the buttons
         :return: None
         """
-        button1 = QPushButton('Long Path', self)
+
+        button1 = QPushButton(self._frame.get_button1(), self)
         button1.setToolTip('This is an example button')
-        button1.move(150, 600)
+        button1.move(self._frame.get_button1x(), self._frame.get_button1y())
         button1.clicked.connect(self.on_click1)
 
-        button2 = QPushButton('Steep Path', self)
-        button2.setToolTip('This is an example button')
-        button2.move(680, 550)
-        button2.clicked.connect(self.on_click2)
+        if self._frame.get_button2x() != None:
+            button2 = QPushButton(self._frame.get_button2(), self)
+            button2.setToolTip('This is an example button')
+            button2.move(self._frame.get_button2x(), self._frame.get_button2y())
+            button2.clicked.connect(self.on_click2)
 
     def on_click1(self):
         """
