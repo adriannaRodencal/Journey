@@ -70,13 +70,13 @@ class Scene(QtWidgets.QWidget):
         """
 
         self._button1 = QPushButton(self._frame.get_button1(), self)
-        self._button1.setToolTip('This is an example button')
+        self._button1.setToolTip('Option 1')
         self._button1.move(self._frame.get_button1x(), self._frame.get_button1y())
         self._button1.clicked.connect(self.on_click1)
 
         if self._frame.get_button2x() != None:
             self._button2 = QPushButton(self._frame.get_button2(), self)
-            self._button2.setToolTip('This is an example button')
+            self._button2.setToolTip('Option 2')
             self._button2.move(self._frame.get_button2x(), self._frame.get_button2y())
             self._button2.clicked.connect(self.on_click2)
 
