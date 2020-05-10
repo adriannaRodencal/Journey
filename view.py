@@ -117,6 +117,9 @@ class Scene(QtWidgets.QWidget):
         """
         self._button1.setText(self._frame.get_button1())
         self._button2.setText(self._frame.get_button2())
+        self._button1.move(self._frame.get_button1x(), self._frame.get_button1y())
+        if self._frame.get_button2x() != None and self._frame.get_button2y() != None:
+            self._button2.move(self._frame.get_button2x(), self._frame.get_button2y())
 
     def next_scene(self, newFrame):
         """
