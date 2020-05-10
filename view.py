@@ -11,6 +11,8 @@ class Scene(QtWidgets.QWidget):
     def __init__(self, parent=None):
 
         super(Scene, self).__init__(parent)
+        self._button1 = None
+        self._button2 = None
         #
         # I'm not sure that this should be created here, but I didn't know where else to put it
         #
@@ -36,7 +38,7 @@ class Scene(QtWidgets.QWidget):
         self.background = QtGui.QPixmap()
         root = QtCore.QFileInfo(__file__).absolutePath()
         self.background.load(root + f'/grahics/{self._frame.get_frame()}.jpg')
-        self.create_buttons()
+        #self.create_buttons()
 
         painter.drawPixmap(rectangle, self.background, rectangle)
         painter.drawText(100, 100, "Hello")
@@ -68,16 +70,16 @@ class Scene(QtWidgets.QWidget):
         :return: None
         """
 
-        button1 = QPushButton(self._frame.get_button1(), self)
-        button1.setToolTip('This is an example button')
-        button1.move(self._frame.get_button1x(), self._frame.get_button1y())
-        button1.clicked.connect(self.on_click1)
+        self._button1 = QPushButton(self._frame.get_button1(), self)
+        self._button1.setToolTip('This is an example button')
+        self._button1.move(self._frame.get_button1x(), self._frame.get_button1y())
+        self._button1.clicked.connect(self.on_click1)
 
         if self._frame.get_button2x() != None:
-            button2 = QPushButton(self._frame.get_button2(), self)
-            button2.setToolTip('This is an example button')
-            button2.move(self._frame.get_button2x(), self._frame.get_button2y())
-            button2.clicked.connect(self.on_click2)
+            self._button2 = QPushButton(self._frame.get_button2(), self)
+            self._button2.setToolTip('This is an example button')
+            self._button2.move(self._frame.get_button2x(), self._frame.get_button2y())
+            self._button2.clicked.connect(self.on_click2)
 
     def on_click1(self):
         """
@@ -109,10 +111,19 @@ class Scene(QtWidgets.QWidget):
             self.theModel.next_scene(self, self._frame.get_button2Next())
         print('PyQt5 button click 1')
 
+    def update_buttons(self):
+        """
+        Updates the scenes buttons
+        :return: None
+        """
+        self._button1.setText(self._frame.get_button1())
+        self._button2.setText(self._frame.get_button2())
+
     def next_scene(self, newFrame):
         """
         Sets up the next scene
         :return: None
         """
         self._frame = newFrame
+        self.update_buttons()
         print('Next Scene')
