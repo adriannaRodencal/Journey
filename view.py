@@ -38,7 +38,6 @@ class Scene(QtWidgets.QWidget):
         self.background = QtGui.QPixmap()
         root = QtCore.QFileInfo(__file__).absolutePath()
         self.background.load(root + f'/grahics/{self._frame.get_frame()}.jpg')
-        #self.create_buttons()
 
         painter.drawPixmap(rectangle, self.background, rectangle)
         painter.drawText(100, 100, "Hello")
