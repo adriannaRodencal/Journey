@@ -26,6 +26,9 @@ class Scene(QtWidgets.QWidget):
         self.setFocusPolicy(QtCore.Qt.StrongFocus)
         self.create_buttons()
 
+    def get_frame(self):
+        return self._frame
+
     def paintEvent(self, event):
         """
         This sets up the background image and text for the scene

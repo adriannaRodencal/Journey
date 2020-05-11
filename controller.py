@@ -163,3 +163,7 @@ class MyApplication(QtWidgets.QMainWindow):
         x = event.pos().x()
         y = event.pos().y()
         print(x, y)
+        currentFrame = self.display.get_frame()
+        if currentFrame.get_frameName() == 'emptyCave':
+            if 764 < x < 835 and 337 < y < 392:
+                self.display.theModel.next_scene(self.display, currentFrame.get_button2Next())
