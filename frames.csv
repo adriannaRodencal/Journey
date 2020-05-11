@@ -1,4 +1,4 @@
-#Cover, Start, 650, 600, None, None, None, riverChoose, None, 100
+Cover, Start, 650, 600, None, None, None, riverChoose, None, 100
 riverChoose, Float Across, 200, 625, Walk Across, 1050, 550, logChoice, fallenTreeChoice, 100
 logChoice, Continue, 200, 625, None, None, None, mountainChoice, YouDrowned, 25
 fallenTreeChoice, Continue, 200, 625, None, None, None, mountainChoice, None, 50
