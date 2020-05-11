@@ -74,7 +74,6 @@ class Model(object):
                     else:
                         frame = Frame(self, name, button1, float(button1x), float(button1y), button1Next, button2, float(button2x),
                                   float(button2y), button2Next, float(success), location=None)
-                    print(frame)
 
 
                     self._frames.append(frame)
