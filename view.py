@@ -79,6 +79,13 @@ class Scene(QtWidgets.QWidget):
             self._button2.setToolTip('Option 2')
             self._button2.move(self._frame.get_button2x(), self._frame.get_button2y())
             self._button2.clicked.connect(self.on_click2)
+        else:
+            self._button2 = QPushButton("Placeholder", self)
+            self._button2.setToolTip('Option 2')
+            self._button2.move(1050, 550)
+            self._button2.clicked.connect(self.on_click2)
+            self._button2.hide()
+
 
     def on_click1(self):
         """
@@ -116,10 +123,13 @@ class Scene(QtWidgets.QWidget):
         :return: None
         """
         self._button1.setText(self._frame.get_button1())
-        self._button2.setText(self._frame.get_button2())
         self._button1.move(self._frame.get_button1x(), self._frame.get_button1y())
-        if self._frame.get_button2x() != None and self._frame.get_button2y() != None:
+        if self._frame.get_button2() != 'None':
+            self._button2.show()
+            self._button2.setText(self._frame.get_button2())
             self._button2.move(self._frame.get_button2x(), self._frame.get_button2y())
+        else:
+            self._button2.hide()
 
     def next_scene(self, newFrame):
         """
