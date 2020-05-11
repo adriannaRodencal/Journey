@@ -111,7 +111,7 @@ class MyApplication(QtWidgets.QMainWindow):
 
 
     def create_status_bar(self):
-        self.statusBar().showMessage("Opening")
+        self.statusBar().showMessage("Enjoy the Game!")
         #
         # You can also add widgets to the statusBar
         #
