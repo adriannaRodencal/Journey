@@ -158,7 +158,7 @@ class MyApplication(QtWidgets.QMainWindow):
         QtWidgets.QMessageBox.about(self, "Treekthin ota at Churi",
                                     "Inventory")
 
-    def mousePresEvent(self, event):
+    def mousePressEvent(self, event):
         print("click (display)")
         x = event.pos().x()
         y = event.pos().y()

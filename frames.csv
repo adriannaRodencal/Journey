@@ -14,7 +14,7 @@ upsetDragon, WAC-47, 200, 625, BB-8, 1050, 550, happyDragon, disappointedDragon,
 happyDragon, Continue, 200, 625, None, None, None, FlyingDragon, None, 100
 FlyingDragon, Continue, 200, 625, None, None, None, Violet, None, 100
 disappointedDragon, Continue, 200, 625, None, None, None, emptyCave, None, 100
-emptyCave, Continue, 200, 625, None, None, None, sleepingInCave, None, 100
+emptyCave, Continue, 200, 625, None, None, None, sleepingInCave, dragonPhotograph, 100
 dragonPhotograph, Continue, 200, 625, None, None, None, sleepingInCave, None, 100
 sleepingInCave, Continue, 200, 625, None, None, None, goOrReturn, None, 100
 goOrReturn, Return Home, 200, 625, Find Violet, 1050, 550, returnHome, keepClimbing, 100
