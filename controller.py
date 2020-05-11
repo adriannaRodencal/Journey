@@ -9,31 +9,27 @@ from view import Scene
 
 class MyApplication(QtWidgets.QMainWindow):
     def __init__(self, app):
-        # MainWindow is, as you might expect, the main window
-        # of an application. It supports menus, status bars,
-        # toolbars and probably other stuff.
         #
         # Call __init__ for the parent class to initialize things.
+        #
         super(MyApplication, self).__init__()
 
         #
         # Keep a reference to the app so we can explicitly call self.app.processEvents().
-        # You won't have to worry about this for a while. You'll know when you need it.
         #
         self.app = app
 
         #
         # Setup the main display window.
-
-
+        #
         self.setup_window()
+
         #
         # Initialize the widget that will act as the display.
         #
         self.display = Scene()
         self.setCentralWidget(self.display)
         self.display.show()
-
 
         #
         # Create actions, menus, toolbars and statusbar
@@ -42,27 +38,6 @@ class MyApplication(QtWidgets.QMainWindow):
         self.create_menus()
         self.create_tool_bars()
         self.create_status_bar()
-
-        # self.event = MyLabel()
-        # self.event.show()
-
-        #
-        # This example only has one item in the main window. If you write
-        # a program where you have multiple items in the main window then
-        # you can control the layout of those items. Layout here means
-        # the relationship between the items on the screen. This can
-        # become complicated as users resize things, so "layouts" really
-        # help with that.
-        #
-        # There are: Vertical Box Layouts (QVBoxLayout), Horizontal Box
-        # Layouts (QHBoxLayout) and Grid Layouts (QGridLayout).
-        #
-        # Try it without these lines commented out. It is a subtle difference.
-        # See the layouts examples for, well, examples.
-        #
-        #mainLayout = QtWidgets.QVBoxLayout()
-        #mainLayout.addWidget(self.display)
-        #self.setLayout(mainLayout)
 
     def setup_window(self):
         """
@@ -129,10 +104,10 @@ class MyApplication(QtWidgets.QMainWindow):
     def create_tool_bars(self):
         """Create a toolbar and add an action to it."""
 
-        # self.fileToolBar = self.addToolBar("File")
-        # self.fileToolBar.addAction(self.newAction)
-        # self.fileToolBar.addAction(self.openAction)
-        # self.fileToolBar.addAction(self.saveAction)
+        #self.fileToolBar = self.addToolBar("File")
+        #self.fileToolBar.addAction(self.newAction)
+        #self.fileToolBar.addAction(self.openAction)
+        #self.fileToolBar.addAction(self.saveAction)
 
 
     def create_status_bar(self):
@@ -159,7 +134,6 @@ class MyApplication(QtWidgets.QMainWindow):
                                     "Inventory")
 
     def mousePressEvent(self, event):
-        print("click (display)")
         x = event.pos().x()
         y = event.pos().y()
         print(x, y)

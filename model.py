@@ -15,7 +15,6 @@ class Model(object):
 
 
     def get_currentFrame(self):
-        print(self.__currentFrame)
         return self.__currentFrame
 
     def get_frames(self):
@@ -39,8 +38,6 @@ class Model(object):
                 # This is so that the program ignores the comments in the file
                 #
                 if line[0] != '#':
-                    if len(line.split(',')) != 19:
-                        print(line)
                     name, button1, button1x, button1y, button2, button2x, button2y, button1Next, button2Next, success = line.split(
                         ',')
                     name = name.strip()
@@ -80,7 +77,6 @@ class Model(object):
 
 
                     self._frames.append(frame)
-        print(self._frames)
 
     def next_scene(self, theScene, newScene):
         """

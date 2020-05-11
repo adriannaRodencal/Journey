@@ -103,7 +103,6 @@ class Scene(QtWidgets.QWidget):
             self.theModel.next_scene(self, self._frame.get_button2Next())
         else:
             self.theModel.next_scene(self, self._frame.get_button1Next())
-        print('PyQt5 button click 1')
 
     def on_click2(self):
         """
@@ -118,7 +117,6 @@ class Scene(QtWidgets.QWidget):
             self.theModel.next_scene(self, self._frame.get_button2Next())
         else:
             self.theModel.next_scene(self, self._frame.get_button2Next())
-        print('PyQt5 button click 1')
 
     def update_buttons(self):
         """
@@ -141,4 +139,3 @@ class Scene(QtWidgets.QWidget):
         """
         self._frame = newFrame
         self.update_buttons()
-        print('Next Scene')
