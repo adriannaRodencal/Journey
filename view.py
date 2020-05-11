@@ -8,9 +8,11 @@ from model import Frame
 
 class Scene(QtWidgets.QWidget):
 
-    def __init__(self, parent=None, possiblePaths=2):
+    def __init__(self, parent=None):
 
         super(Scene, self).__init__(parent)
+        self._button1 = None
+        self._button2 = None
         #
         # I'm not sure that this should be created here, but I didn't know where else to put it
         #
@@ -66,15 +68,24 @@ class Scene(QtWidgets.QWidget):
         Sets up the buttons
         :return: None
         """
-        button1 = QPushButton('Long Path', self)
-        button1.setToolTip('This is an example button')
-        button1.move(150, 600)
-        button1.clicked.connect(self.on_click1)
 
-        button2 = QPushButton('Steep Path', self)
-        button2.setToolTip('This is an example button')
-        button2.move(680, 550)
-        button2.clicked.connect(self.on_click2)
+        self._button1 = QPushButton(self._frame.get_button1(), self)
+        self._button1.setToolTip('Option 1')
+        self._button1.move(self._frame.get_button1x(), self._frame.get_button1y())
+        self._button1.clicked.connect(self.on_click1)
+
+        if self._frame.get_button2x() != None:
+            self._button2 = QPushButton(self._frame.get_button2(), self)
+            self._button2.setToolTip('Option 2')
+            self._button2.move(self._frame.get_button2x(), self._frame.get_button2y())
+            self._button2.clicked.connect(self.on_click2)
+        else:
+            self._button2 = QPushButton("Placeholder", self)
+            self._button2.setToolTip('Option 2')
+            self._button2.move(1050, 550)
+            self._button2.clicked.connect(self.on_click2)
+            self._button2.hide()
+
 
     def on_click1(self):
         """
@@ -86,14 +97,14 @@ class Scene(QtWidgets.QWidget):
         #
         success = self.theModel.determineFail()
         if success == False:
-            self.theModel.next_scene(self, self._frame.get_button1Next())
+            self.theModel.next_scene(self, self._frame.get_button2Next())
         else:
             self.theModel.next_scene(self, self._frame.get_button1Next())
         print('PyQt5 button click 1')
 
     def on_click2(self):
         """
-        Tells the program what scene to show after the user presses button2h
+        Tells the program what scene to show after the user presses button2
         :return: None
         """
         #
@@ -106,10 +117,25 @@ class Scene(QtWidgets.QWidget):
             self.theModel.next_scene(self, self._frame.get_button2Next())
         print('PyQt5 button click 1')
 
+    def update_buttons(self):
+        """
+        Updates the scenes buttons
+        :return: None
+        """
+        self._button1.setText(self._frame.get_button1())
+        self._button1.move(self._frame.get_button1x(), self._frame.get_button1y())
+        if self._frame.get_button2() != 'None':
+            self._button2.show()
+            self._button2.setText(self._frame.get_button2())
+            self._button2.move(self._frame.get_button2x(), self._frame.get_button2y())
+        else:
+            self._button2.hide()
+
     def next_scene(self, newFrame):
         """
         Sets up the next scene
         :return: None
         """
         self._frame = newFrame
+        self.update_buttons()
         print('Next Scene')
