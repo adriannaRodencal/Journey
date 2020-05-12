@@ -10,58 +10,32 @@ from intentory import Inventory
 
 class MyApplication(QtWidgets.QMainWindow):
     def __init__(self, app):
-        # MainWindow is, as you might expect, the main window
-        # of an application. It supports menus, status bars,
-        # toolbars and probably other stuff.
         #
         # Call __init__ for the parent class to initialize things.
+        #
         super(MyApplication, self).__init__()
 
         #
         # Keep a reference to the app so we can explicitly call self.app.processEvents().
-        # You won't have to worry about this for a while. You'll know when you need it.
         #
         self.app = app
 
         #
         # Setup the main display window.
-
         self.setup_window()
+
         #
         # Initialize the widget that will act as the display.
         #
         self.display = Scene()
         self.setCentralWidget(self.display)
         self.display.show()
-
-
-        #l
+        
         # Create actions, menus, toolbars and statusbar
         #
         self.create_actions()
         self.create_menus()
         self.create_status_bar()
-
-        # self.event = MyLabel()
-        # self.event.show()
-
-        #
-        # This example only has one item in the main window. If you write
-        # a program where you have multiple items in the main window then
-        # you can control the layout of those items. Layout here means
-        # the relationship between the items on the screen. This can
-        # become complicated as users resize things, so "layouts" really
-        # help with that.
-        #
-        # There are: Vertical Box Layouts (QVBoxLayout), Horizontal Box
-        # Layouts (QHBoxLayout) and Grid Layouts (QGridLayout).
-        #
-        # Try it without these lines commented out. It is a subtle difference.
-        # See the layouts examples for, well, examples.
-        #
-        #mainLayout = QtWidgets.QVBoxLayout()
-        #mainLayout.addWidget(self.display)
-        #self.setLayout(mainLayout)
 
     def setup_window(self):
         """
@@ -112,6 +86,10 @@ class MyApplication(QtWidgets.QMainWindow):
                                              statusTip="More information about the program",
                                              triggered=self.about)
 
+        self.inventoryAction = QtWidgets.QAction("&Inventory", self,
+                                            statusTip="Show Inventory",
+                                            triggered=self.inventory)
+
     def create_menus(self):
         """Create a menubar and add a menu and an action."""
 
@@ -120,8 +98,19 @@ class MyApplication(QtWidgets.QMainWindow):
         self.helpMenu = self.menuBar().addMenu("&Help")
         self.helpMenu.addAction(self.aboutAction)
 
+
+        self.inventoryMenu = self.menuBar().addMenu("&Inventory")
+        self.inventoryMenu.addAction(self.inventoryAction)
+
+
     def create_status_bar(self):
-        self.statusBar().showMessage("Opening")
+        self.statusBar().showMessage("Enjoy the Game!")
+        #
+        # You can also add widgets to the statusBar
+        #
+        # self.progressBar = QtWidgets.QProgressBar(self.statusBar())
+        # self.progressBar.hide()
+        # self.statusBar().addPermanentWidget(self.progressBar)
 
     def quit(self):
         self.close()
@@ -133,8 +122,16 @@ class MyApplication(QtWidgets.QMainWindow):
                                     "mountains. Choose your path carefully because "
                                     "one small error could ruin everything.")
 
-    def mousePresEvent(self, event):
-        print("click (display)")
+    def inventory(self):
+        self.inventory = Inventory()
+        self.inventory.show()
+        # QtWidgets.QMessageBox.about(self, "Treekthin ota at Churi",
+        #                             "Inventory")
+
+    def mousePressEvent(self, event):
         x = event.pos().x()
         y = event.pos().y()
-        print(x, y)
+        currentFrame = self.display.get_frame()
+        if currentFrame.get_frameName() == 'emptyCave':
+            if 764 < x < 835 and 337 < y < 392:
+                self.display.theModel.next_scene(self.display, currentFrame.get_button2Next())
