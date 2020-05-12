@@ -26,7 +26,6 @@ class MyApplication(QtWidgets.QMainWindow):
         #
         # Setup the main display window.
 
-
         self.setup_window()
         #
         # Initialize the widget that will act as the display.
@@ -36,7 +35,7 @@ class MyApplication(QtWidgets.QMainWindow):
         self.display.show()
 
 
-        #
+        #l
         # Create actions, menus, toolbars and statusbar
         #
         self.create_actions()

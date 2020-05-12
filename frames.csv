@@ -1,25 +1,29 @@
-Cover, Start, 650, 600, None, None, None, riverChoose, None, 100
+Cover, Start, 650, 600, None, None, None, Background1, None, 100
+Background1, Continue, 650, 600, None, None, None, Background2, None, 100
+Background2, Continue, 650, 700, None, None, None, Background3, None, 100
+Background3, Continue, 650, 600, None, None, None, riverChoose, None, 100
 riverChoose, Float Across, 200, 625, Walk Across, 1050, 550, logChoice, fallenTreeChoice, 100
-logChoice, Continue, 650, 600, None, None, None, mountainChoice, YouDrowned, 30
-fallenTreeChoice, Continue, 650, 600, None, None, None, mountainChoice, YouDrowned, 50
+logChoice, Continue, 650, 600, None, None, None, mountainChoice, YouDrowned, 50
+fallenTreeChoice, Continue, 650, 600, None, None, None, mountainChoice, YouDrowned, 75
 mountainChoice, Long Path, 300, 550, Short Path, 1000, 560, longChoice, shortChoice, 100
 longChoice, Continue, 650, 600, None, None, None, sleepingChoices, None, 100
 shortChoice, Continue, 650, 600, None, None, None, sleepingChoices, FellAndDied, 85
-sleepingChoices, Cave, 650, 250, Field, 650, 650, upsetDragon, nightSky, 100
+sleepingChoices, Cave, 650, 250, Field, 650, 650, firstDragon, nightSky, 100
 nightSky, Continue, 650, 600, None, None, None, clearNight, None, 100
 clearNight, Continue, 650, 600, None, None, None, goOrReturn, None, 100
 cloudyNight, Continue, 650, 600, None, None, None, goOrReturn, None, 50
 frozenToDeath, Return to Home, 400, 375, Quit, 875, 375, riverChoose, None, 100
-upsetDragon, WAC-47, 200, 625, BB-8, 1050, 625, happyDragon, dissapointedDragon, 100
+firstDragon, Continue, 650, 600, None, None, None, upsetDragon, None, 100
+upsetDragon, WAC-47, 200, 625, BB-8, 1050, 625, happyDragon, disappointedDragon, 100
 happyDragon, Continue, 650, 600, None, None, None, FlyingDragon, None, 100
 FlyingDragon, Continue, 650, 600, None, None, None, Violet, None, 100
-dissapointedDragon, Continue, 650, 600, None, None, None, emptyCave, None, 100
+disappointedDragon, Continue, 650, 600, None, None, None, emptyCave, None, 100
 emptyCave, Continue, 650, 600, None, None, None, sleepingInCave, None, 100
 dragonPhotograph, Continue, 650, 600, None, None, None, sleepingInCave, None, 100
 sleepingInCave, Continue, 650, 600, None, None, None, goOrReturn, None, 100
 goOrReturn, Return Home, 200, 625, Find Violet, 650, 550, returnHome, keepClimbing, 100
 returnHome, Continue, 650, 600, None, None, None, Cover, None, 100
-keepClimbing, Continue, 650, 600, None, None, None, emptyCave, None, 100
+keepClimbing, Continue, 650, 600, None, None, None, Violet, None, 100
 Violet, Continue, 650, 600, None, None, None, VictoryNoDragon, None, 100
 VictoryNoDragon, Home, 650, 600, None, None, None, Cover, None, 100
 DragonVictory, Home, 650, 600, None, None, None, Cover, None, 100
