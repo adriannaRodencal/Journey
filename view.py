@@ -43,7 +43,7 @@ class Scene(QtWidgets.QWidget):
         self.background.load(root + f'/grahics/{self._frame.get_frame()}.jpg')
 
         painter.drawPixmap(rectangle, self.background, rectangle)
-        painter.drawText(100, 100, "Hello")
+        # painter.drawText(100, 100, "Hello")
 
     def keyPressEvent(self, event):
         """

@@ -5,7 +5,6 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from time import sleep
 from view import Scene
-from intentory import Inventory
 
 
 class MyApplication(QtWidgets.QMainWindow):
@@ -86,9 +85,6 @@ class MyApplication(QtWidgets.QMainWindow):
                                              statusTip="More information about the program",
                                              triggered=self.about)
 
-        self.inventoryAction = QtWidgets.QAction("&Inventory", self,
-                                            statusTip="Show Inventory",
-                                            triggered=self.inventory)
 
     def create_menus(self):
         """Create a menubar and add a menu and an action."""
@@ -98,9 +94,6 @@ class MyApplication(QtWidgets.QMainWindow):
         self.helpMenu = self.menuBar().addMenu("&Help")
         self.helpMenu.addAction(self.aboutAction)
 
-
-        self.inventoryMenu = self.menuBar().addMenu("&Inventory")
-        self.inventoryMenu.addAction(self.inventoryAction)
 
 
     def create_status_bar(self):
@@ -122,11 +115,6 @@ class MyApplication(QtWidgets.QMainWindow):
                                     "mountains. Choose your path carefully because "
                                     "one small error could ruin everything.")
 
-    def inventory(self):
-        self.inventory = Inventory()
-        self.inventory.show()
-        # QtWidgets.QMessageBox.about(self, "Treekthin ota at Churi",
-        #                             "Inventory")
 
     def mousePressEvent(self, event):
         x = event.pos().x()
