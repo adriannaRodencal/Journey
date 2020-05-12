@@ -15,7 +15,7 @@ class Model(object):
 
 
     def get_currentFrame(self):
-        print(self.__currentFrame)
+        #print(self.__currentFrame)
         return self.__currentFrame
 
     def get_frames(self):
@@ -109,56 +109,6 @@ class Model(object):
         else:
             return True
 
-    def set_new_scene(self, nextScene):
-        """
-        Set up the new scene in the Frame class so variables can be pulled out.
-        :param nextFrame
-        :return: None
-        """
-        with open('frames.csv', 'r') as framesFile:
-            for line in framesFile:
-                #
-                # This is so that the program ignores the comments in the file
-                #
-                name, button1, button1x, button1y, button2, button2x, button2y, button1Next, button2Next, success = line.split(
-                    ',')
-                here = len(name)
-                if line[0:here] == nextScene:
-                    name = name.strip()
-                    success = success.strip()
-
-                    button1 = button1.strip()
-                    button1x = button1x.strip()
-                    button1y = button1y.strip()
-                    if not toolbox.is_number(button1x):
-                        raise ValueError(f'{name}: button 1 x coordinate must be a number. Check {filename}.')
-                    if not toolbox.is_number(button1y):
-                        raise ValueError(f'{name}: button 1 y coordinate must be a number. Check {filename}.')
-
-                    button2 = button2.strip()
-                    button2x = button2x.strip()
-                    button2y = button2y.strip()
-                    if not toolbox.is_number(button2x) and button2x != 'None':
-                        raise ValueError(f'{name}: button 2 x coordinate must be a number. Check {filename}.')
-                    if not toolbox.is_number(button2y) and button2y != 'None':
-                        raise ValueError(f'{name}: button 2 y coordinate must be a number. Check {filename}.')
-
-                    if button2x == 'None':
-                        button2x = None
-                    if button2y == 'None':
-                        button2y = None
-
-                    button1Next = button1Next.strip()
-                    button2Next = button2Next.strip()
-
-                    if button2x == None:
-
-                        frame = Frame(self, name, button1, float(button1x), float(button1y), button1Next, button2,
-                                      button2x, button2y, button2Next, success, location=None)
-                    else:
-                        frame = Frame(self, name, button1, float(button1x), float(button1y), button1Next, button2,
-                                      float(button2x), float(button2y), button2Next, success, location=None)
-                    print(frame)
 
 class Frame(object):
   
@@ -259,7 +209,7 @@ class Frame(object):
         return: an object
         """
         nextFrame = self.find_frame_object(self.__theModel.get_frames(), self.__button1Next)
-        self.__theModel.set_new_scene(self.__button1Next)
+        #self.__theModel.set_new_scene(self.__button1Next)
         return nextFrame
 
     def get_button2Next(self):
@@ -268,7 +218,7 @@ class Frame(object):
         return: an object
         """
         nextFrame = self.find_frame_object(self.__theModel.get_frames(), self.__button2Next)
-        self.__theModel.set_new_scene(self.__button2Next)
+        #self.__theModel.set_new_scene(self.__button2Next)
         return nextFrame
 
 

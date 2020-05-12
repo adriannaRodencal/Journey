@@ -5,6 +5,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from time import sleep
 from view import Scene
+from intentory import Inventory
 
 
 class MyApplication(QtWidgets.QMainWindow):
@@ -25,7 +26,6 @@ class MyApplication(QtWidgets.QMainWindow):
         #
         # Setup the main display window.
 
-
         self.setup_window()
         #
         # Initialize the widget that will act as the display.
@@ -35,12 +35,11 @@ class MyApplication(QtWidgets.QMainWindow):
         self.display.show()
 
 
-        #
+        #l
         # Create actions, menus, toolbars and statusbar
         #
         self.create_actions()
         self.create_menus()
-        self.create_tool_bars()
         self.create_status_bar()
 
         # self.event = MyLabel()
@@ -123,16 +122,10 @@ class MyApplication(QtWidgets.QMainWindow):
         self.addAction(self.exitAction)
 
         self.helpMenu = self.menuBar().addMenu("&Help")
-        self.helpMenu.addAction(self.inventoryAction)
         self.helpMenu.addAction(self.aboutAction)
 
-    def create_tool_bars(self):
-        """Create a toolbar and add an action to it."""
-
-        # self.fileToolBar = self.addToolBar("File")
-        # self.fileToolBar.addAction(self.newAction)
-        # self.fileToolBar.addAction(self.openAction)
-        # self.fileToolBar.addAction(self.saveAction)
+        self.inventoryMenu = self.menuBar().addMenu("&Inventory")
+        self.inventoryMenu.addAction(self.inventoryAction)
 
 
     def create_status_bar(self):
@@ -155,8 +148,10 @@ class MyApplication(QtWidgets.QMainWindow):
                                     "one small error could ruin everything.")
 
     def inventory(self):
-        QtWidgets.QMessageBox.about(self, "Treekthin ota at Churi",
-                                    "Inventory")
+        self.inventory = Inventory()
+        self.inventory.show()
+        # QtWidgets.QMessageBox.about(self, "Treekthin ota at Churi",
+        #                             "Inventory")
 
     def mousePresEvent(self, event):
         print("click (display)")
