@@ -112,10 +112,6 @@ class MyApplication(QtWidgets.QMainWindow):
                                              statusTip="More information about the program",
                                              triggered=self.about)
 
-        self.inventoryAction = QtWidgets.QAction("&Inventory", self,
-                                            statusTip="Show Inventory",
-                                            triggered=self.inventory)
-
     def create_menus(self):
         """Create a menubar and add a menu and an action."""
 
@@ -124,18 +120,8 @@ class MyApplication(QtWidgets.QMainWindow):
         self.helpMenu = self.menuBar().addMenu("&Help")
         self.helpMenu.addAction(self.aboutAction)
 
-        self.inventoryMenu = self.menuBar().addMenu("&Inventory")
-        self.inventoryMenu.addAction(self.inventoryAction)
-
-
     def create_status_bar(self):
         self.statusBar().showMessage("Opening")
-        #
-        # You can also add widgets to the statusBar
-        #
-        # self.progressBar = QtWidgets.QProgressBar(self.statusBar())
-        # self.progressBar.hide()
-        # self.statusBar().addPermanentWidget(self.progressBar)
 
     def quit(self):
         self.close()
@@ -146,12 +132,6 @@ class MyApplication(QtWidgets.QMainWindow):
                                     "who went missing while traveling in the "
                                     "mountains. Choose your path carefully because "
                                     "one small error could ruin everything.")
-
-    def inventory(self):
-        self.inventory = Inventory()
-        self.inventory.show()
-        # QtWidgets.QMessageBox.about(self, "Treekthin ota at Churi",
-        #                             "Inventory")
 
     def mousePresEvent(self, event):
         print("click (display)")
